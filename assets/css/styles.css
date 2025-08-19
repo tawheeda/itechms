@@ -1,0 +1,206 @@
+:root{
+  --brand:#012B44;
+  --accent:#09A7FF;
+  --text:#0B1A28;
+  --muted:#5A6B7B;
+  --bg:#F6F9FC;
+  --card:#FFFFFF;
+  --ring:rgba(1,43,68,.15);
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0; padding:0;
+  font-family:Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color:var(--text); background:var(--bg);
+}
+a{color:inherit; text-decoration:none}
+img{max-width:100%; height:auto; display:block}
+
+/* Layout */
+.container{max-width:1200px; margin:0 auto; padding:0 20px}
+
+/* Top bar */
+.topbar{background:var(--brand); color:#fff; font-size:14px}
+.topbar .container{display:flex; align-items:center; justify-content:space-between; padding:8px 20px}
+.topbar .social a{opacity:.9; margin-left:12px}
+
+/* Header / Nav */
+header{position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #e6edf3}
+.nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+.brand{display:flex; align-items:center; gap:12px}
+.brand img{height:40px}
+.menu{display:flex; align-items:center; gap:22px}
+.menu a{padding:8px 10px; border-radius:8px; color:var(--text); font-weight:600}
+.menu a:hover{background:#f1f6fb; color:var(--brand)}
+.cta-btn{background:var(--brand); color:#fff; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow:0 6px 20px var(--ring)}
+.cta-btn:hover{opacity:.95}
+.mobile-toggle{display:none; border:none; background:#fff; font-size:22px}
+
+/* NEW: default hide mobile menu so it never leaks onto desktop */
+.mobile-menu{display:none}
+
+/* Desktop (901px+): force desktop nav, hide mobile UI even if inline styles were set */
+@media (min-width:901px){
+  .mobile-toggle{display:none !important;}
+  .mobile-menu{display:none !important;}
+  .menu{display:flex;}
+}
+
+/* Mobile (<=900px): show toggle, hide desktop menu; open mobile menu via .is-open */
+@media (max-width:900px){
+  .menu{display:none}
+  .mobile-toggle{display:block}
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    padding:12px 0;
+    border-top:1px solid #e6edf3
+  }
+  .mobile-menu.is-open{display:flex}
+  .mobile-menu a{padding:12px 0; border-bottom:1px solid #eef3f7}
+}
+
+/* Hero */
+.hero{
+  position:relative; overflow:hidden;
+  background:linear-gradient(160deg, #012B44 0%, #02385E 40%, #0B5D88 100%);
+  color:#fff;
+}
+.hero-inner{display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center; padding:70px 0}
+.hero h1{font-size:48px; line-height:1.05; margin:0 0 12px}
+.hero p{font-size:18px; color:#D6E8F5; margin:0 0 24px; max-width:56ch}
+.hero .actions{display:flex; gap:12px; flex-wrap:wrap}
+.btn{display:inline-block; padding:12px 18px; border-radius:12px; font-weight:700; border:2px solid transparent}
+.btn.primary{background:#fff; color:var(--brand)}
+.btn.secondary{border-color:#78C8FF; color:#fff}
+.hero-card{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); backdrop-filter: blur(6px); padding:18px; border-radius:16px}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr; padding:48px 0}
+  .hero h1{font-size:36px}
+}
+
+/* Sections */
+.section{padding:70px 0}
+.section h2{font-size:32px; margin:0 0 10px}
+.section .eyebrow{color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-size:12px; font-weight:800}
+
+/* Cards */
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:20px}
+.card{background:var(--card); border:1px solid #e6edf3; border-radius:16px; padding:18px; box-shadow:0 10px 30px var(--ring)}
+.card h3{margin:0 0 6px}
+.card p{margin:0; color:var(--muted)}
+
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+
+/* Logos grid */
+.product-logos{display:grid; grid-template-columns:repeat(6,1fr); gap:18px; align-items:center; margin-top:24px}
+.product-logos img{max-width:100%; height:40px; object-fit:contain; filter:grayscale(1); opacity:.9}
+@media(max-width:900px){.product-logos{grid-template-columns:repeat(3,1fr)}}
+
+/* CTA band */
+.cta{background:#fff; border:1px solid #e6edf3; border-radius:16px; padding:24px; display:flex; align-items:center; justify-content:space-between; gap:18px; box-shadow:0 10px 30px var(--ring)}
+.cta p{margin:0; color:var(--muted)}
+
+/* Footer */
+footer{background:#061C2C; color:#C9D7E5; margin-top:60px}
+footer .columns{display:grid; grid-template-columns:2fr 1.2fr 1fr 1fr; gap:30px}
+footer a{color:#C9D7E5}
+footer h4{color:#fff; margin:0 0 10px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08); margin-top:20px; padding-top:14px; color:#8FA8BF}
+@media(max-width:900px){footer .columns{grid-template-columns:1fr}}
+
+/* Forms */
+.form{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px}
+.form .full{grid-column:1/-1}
+input,select,textarea{
+  width:100%; padding:12px 12px; border-radius:12px; border:1px solid #d8e3ec; background:#fff; font-size:16px
+}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(1,43,68,.15); border-color:#9fc7de}
+label{font-weight:600; font-size:14px; color:var(--text); display:block; margin-bottom:6px}
+
+/* Badges & helpers */
+.badge{display:inline-block; background:#E6F4FF; color:#014A7A; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px}
+.kicker{display:flex; align-items:center; gap:8px; margin-bottom:8px}
+.small{font-size:14px; color:var(--muted)}
+
+/* Horizontal scroll strip */
+.scroll-strip{display:flex; gap:24px; overflow:auto; padding:6px}
+.scroll-strip img{flex:0 0 auto}
+
+/* (Optional) Better keyboard focus visibility */
+:focus-visible{outline:3px solid rgba(1,43,68,.3); outline-offset:2px}
+
+footer .footer-bottom a { color: inherit; text-decoration: underline; }
+footer .footer-bottom a:hover { opacity:.85; }
+
+/* ===== Logos auto-rotating slider ===== */
+.logo-slider{
+  --gap: 24px;
+  --speed: 45s;           /* total time to move half the track; adjust for faster/slower */
+  position: relative;
+  overflow: hidden;
+  margin-top: 14px;
+  touch-action: pan-y;
+  /* Optional: soft fade on edges where supported */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.logo-track{
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: max-content;      /* shrink-wrap to content for smooth loop */
+  animation: logo-scroll var(--speed) linear infinite;
+}
+
+@keyframes logo-scroll{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* move one full set width (because we duplicated) */
+}
+
+/* Pause on hover/focus for usability */
+.logo-slider:hover .logo-track,
+.logo-slider:focus-within .logo-track{
+  animation-play-state: paused;
+}
+
+/* Logo visuals: grayscale by default, colour on hover/focus */
+.logo-slider a img{
+  height: 40px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: .85;
+  transition: filter .2s ease, opacity .2s ease, transform .2s ease;
+}
+
+.logo-slider a:hover img,
+.logo-slider a:focus img{
+  filter: none;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .logo-track{ animation: none; }
+}
+
+/* Partners grid hover effect */
+.product-logos img{
+  height:40px;                /* keep your sizing */
+  object-fit:contain;
+  filter: grayscale(1);
+  opacity:.85;
+  transition: filter .2s ease, opacity .2s ease, transform .2s ease;
+}
+
+/* On hover (and focus if wrapped in <a>) go full colour and lift slightly */
+.product-logos img:hover,
+.product-logos a:focus img{
+  filter:none;
+  opacity:1;
+  transform: translateY(-2px);
+}
